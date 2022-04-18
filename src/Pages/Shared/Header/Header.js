@@ -1,9 +1,12 @@
 import React from 'react';
 import { Container, Nav, Navbar } from 'react-bootstrap';
+
 import { Link } from 'react-router-dom';
 import logo from '../../../images/logo.jpg';
 
+
 const Header = () => {
+
     return (
 
         <>
@@ -21,7 +24,6 @@ const Header = () => {
                         </Nav>
                         <Nav>
                             <Nav.Link as={Link} to="about">About</Nav.Link>
-
                             <Nav.Link as={Link} to="login">
                                 Login
                             </Nav.Link>

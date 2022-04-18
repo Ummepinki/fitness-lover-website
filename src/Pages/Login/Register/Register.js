@@ -1,8 +1,9 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
-import auth from '../../../firebase.init';
+
 import './Register.css';
+import auth from '../../../firebase.init';
 
 const Register = () => {
     const [
@@ -35,8 +36,8 @@ const Register = () => {
             <h2 style={{ textAlign: 'center' }}>Please Register</h2>
             <form onSubmit={handleRegister}>
                 <input type="text" name="name" id="" placeholder='your name' />
-                <input type="email" name="email" id="" placeholder='email added' />
-                <input type="password" name="password" id="" placeholder='password added' />
+                <input type="email" name="email" id="" placeholder='Email Address' required />
+                <input type="password" name="password" id="" placeholder='Password' required />
                 <input type="submit" value=" Register" />
 
             </form>
