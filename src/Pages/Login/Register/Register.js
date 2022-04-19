@@ -1,9 +1,9 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
-
+import { useCreateUserWithEmailAndPassword, useUpdateProfile } from 'react-firebase-hooks/auth';
 import './Register.css';
 import auth from '../../../firebase.init';
+import SocialLogin from '../SocialLogin/SocialLogin';
 
 const Register = () => {
     const [
@@ -11,7 +11,9 @@ const Register = () => {
         user,
         loading,
         error,
-    ] = useCreateUserWithEmailAndPassword(auth);
+    ] = useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
+
+    const [updateProfile, updating, updateError] = useUpdateProfile(auth);
 
     const navigate = useNavigate();
 
@@ -20,16 +22,23 @@ const Register = () => {
     }
 
     if (user) {
-        navigate('/home');
+        console.log('user', user);
     }
 
-    const handleRegister = event => {
+    const handleRegister = async (event) => {
         event.preventDefault();
         const name = event.target.name.value;
         const email = event.target.email.value;
         const password = event.target.password.value;
 
-        createUserWithEmailAndPassword(email, password);
+        // createUserWithEmailAndPassword(email, password);
+
+
+        await createUserWithEmailAndPassword(email, password);
+        await updateProfile({ displayName: name });
+        console.log('Updated profile');
+        navigate('/home');
+
     }
     return (
         <div className='register-form'>
@@ -38,10 +47,11 @@ const Register = () => {
                 <input type="text" name="name" id="" placeholder='your name' />
                 <input type="email" name="email" id="" placeholder='Email Address' required />
                 <input type="password" name="password" id="" placeholder='Password' required />
-                <input type="submit" value=" Register" />
+                <input className='w-50 mx-auto btn btn-primary mt-2' type="submit" value=" Register" />
 
             </form>
-            <p> Already have an account?<Link to="/login" className='text-danger pe-auto text-decoration-none' onClick={navigateLogin}> Please login</Link></p>
+            <p> Already have an account?<Link to="/login" className='text-primary pe-auto text-decoration-none' onClick={navigateLogin}> Please login</Link></p>
+            <SocialLogin></SocialLogin>
         </div>
     );
 };
