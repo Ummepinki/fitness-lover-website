@@ -1,5 +1,5 @@
 Project Name: Independent- services-Provider <br />
-Live site name: https://independent-service-prov-30c3b.web.app/about
+Live site name: https://independent-service-prov-30c3b.web.app/
 
 * fake data load 
 * firebase install
