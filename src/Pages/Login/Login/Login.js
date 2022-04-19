@@ -7,6 +7,7 @@ import auth from '../../../firebase.init';
 import SocialLogin from '../SocialLogin/SocialLogin';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Loading from '../../Shared/Loading/Loading';
 
 const Login = () => {
     const emailRef = useRef('');
@@ -33,6 +34,9 @@ const Login = () => {
             <p className='text-danger'>Error: {error.message}</p>
         </div>
 
+    }
+    if (loading || sending) {
+        return <Loading></Loading>
     }
 
     if (user) {

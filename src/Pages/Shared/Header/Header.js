@@ -18,6 +18,7 @@ const Header = () => {
         <>
             <Navbar collapseOnSelect expand="lg" bg="dark" sticky='top' variant="dark">
                 <Container>
+                    <h2 className='text-light px-1'>Fitness Lover</h2>
                     <Navbar.Brand as={Link} to="/">
                         <img height={30} src={logo} alt="" />
                     </Navbar.Brand>
